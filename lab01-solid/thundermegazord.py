@@ -13,16 +13,6 @@ from domain.shipping import DefaultShipping
 
 
 class ThunderMegazord:
-    """
-    THUNDER MEGAZORD: Uma classe gigante que faz tudo ao mesmo tempo.
-    Sua missão é desmontar este Megazord em componentes menores e especializados (SOLID).
-
-    Violações:
-    - SRP: Valida, calcula desconto, calcula frete, salva no banco e envia e-mail.
-    - OCP: Adicionar novos descontos ou regiões exige abrir este peito de metal e soldar novo código.
-    - DIP: Totalmente acoplado a implementações concretas de IO e Log.
-    """
-
     def process_central_command(self, orderData: dict) -> bool:
         print("--- INICIANDO PROTOCOLO MEGAZORD ---")
 

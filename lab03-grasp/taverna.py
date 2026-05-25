@@ -2,10 +2,6 @@ from domain.inventory import Inventory
 
 
 class TaverneiroService:
-    """
-    O PROBLEMA: Faz todo o trabalho, violando Information Expert e Creator.
-    """
-
     def sell_potion(self, inventory: Inventory):
         print("Taverneiro: 'Aqui está sua poção, forasteiro!'")
         inventory.add_new_item("Poção de Cura", 50.0)
