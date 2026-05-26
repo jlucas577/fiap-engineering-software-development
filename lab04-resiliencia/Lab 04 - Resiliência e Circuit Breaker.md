@@ -22,6 +22,12 @@ Implementar a biblioteca `tenacity` para envelopar chamadas instáveis, configur
    ```bash
    cd lab04-resiliencia
    ```
+   ```bash
+   pip install responses
+   ```
+   ```bash
+   pip install requests
+   ```
 2. Tente rodar o teste de stress e observe a demora (o terminal vai parecer travado):
    ```bash
    pytest test_checkout.py -v
