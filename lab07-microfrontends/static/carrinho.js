@@ -4,14 +4,42 @@ function updateCartUI() {
     const list = document.getElementById('cart-list');
     const totalEl = document.getElementById('cart-total');
 
-    cart.items.forEach(item => {
-        const div = document.createElement('div');
-        div.innerText = `${item.nome} - R$ ${item.preco}`;
-        list.appendChild(div);
-    });
+    list.innerHTML = '';
 
-    list.innerHTML = cart.items.length === 0 ? 'Vazio' : '';
-    totalEl.innerText = cart.total.toFixed(2);
+    if (cart.items.length === 0) {
+        list.innerText = 'Vazio';
+    } else {
+        const clustered = {};
+
+        cart.items.forEach(item => {
+            if (!clustered[item.nome]) {
+                clustered[item.nome] = {
+                    quantity: 0,
+                    unitValue: item.preco
+                };
+            }
+
+            clustered[item.nome].quantity++;
+        });
+
+        Object.entries(clustered).forEach(([nome, dados]) => {
+            const div = document.createElement('div');
+            const finalValue = dados.quantity * dados.unitValue;
+
+            div.innerText = `${nome} (${dados.quantity}x) - R$ ${formatCurrency(finalValue)}`;
+
+            list.appendChild(div);
+        });
+    }
+
+    totalEl.innerText = formatCurrency(cart.total);
+}
+
+function formatCurrency(value) {
+    return Number(value).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 }
 
 updateCartUI();
